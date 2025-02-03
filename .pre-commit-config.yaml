@@ -1,0 +1,34 @@
+repos:
+  -   repo: https://github.com/pre-commit/pre-commit-hooks
+      rev: v4.6.0
+      hooks:
+        -   id: trailing-whitespace
+            name: (pre-commit-hooks) Trim Trailing Whitespaces
+        -   id: end-of-file-fixer
+            name: (pre-commit-hooks) Fix End of Files
+        -   id: mixed-line-ending
+            args: [ '--fix=lf' ]
+            name: (pre-commit-hooks) Replace line ending by the UNIX 'lf' character
+        -   id: check-yaml
+            name: (pre-commit-hooks) Check Yaml Files
+
+  -   repo: https://github.com/antonbabenko/pre-commit-terraform
+      rev: v1.92.0
+      hooks:
+        -   id: terraform_validate
+            name: (Terraform) Validate Config Files
+            args:
+              - --hook-config=--parallelism-ci-cpu-cores=6
+
+        -   id: terraform_fmt
+            name: (Terraform) Format
+            args:
+              - --hook-config=--parallelism-ci-cpu-cores=6
+
+        -   id: terraform_docs
+            name: (Terraform) Docs
+            args:
+              - --hook-config=--path-to-file=README.md
+              - --hook-config=--add-to-existing-file=true
+              - --hook-config=--create-file-if-not-exist=true
+              - --hook-config=--parallelism-ci-cpu-cores=6
